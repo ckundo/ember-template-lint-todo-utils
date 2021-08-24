@@ -1,0 +1,11 @@
+0ea72686d8871ed053652f14df5d645f8b39f485/yyyyyyyy
+  engine "example-engine"
+  filePath "path/to/file.hbs"
+  ruleId "example-rule-id"
+  startLine 50
+  endLine 50
+  startColumn 1
+  endColumn 12
+  createdDate 1624424500000
+  warnDate 1627016500000
+  errorDate 1629608500000

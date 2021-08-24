@@ -1,5 +1,7 @@
 // Inspired by https://github.com/hjylewis/esplint/blob/master/lib/gitConflict.js
 
+import { diffPatch, patch as applyPatch } from 'node-diff3';
+
 const PARENT_RE = /\|{7,}/g;
 const OURS_RE = /<{7,}/g;
 const THEIRS_RE = /={7,}/g;
@@ -38,6 +40,8 @@ export function resolveConflict(content: string): string {
     }
   });
 
-  console.log(ours, theirs);
-  return [...ours, ...theirs].join('\n\r');
+  const patch = diffPatch(theirs, ours);
+  const result = applyPatch(theirs, patch).join('\n');
+
+  return result;
 }
