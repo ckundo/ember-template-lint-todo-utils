@@ -2,39 +2,40 @@ import { resolveConflict } from '../src/git-utils';
 import { readFileSync } from 'fs';
 
 describe('merge conflict resolution', () => {
-  describe('given a branch that a 2 todos', () => {
-    describe('merging a branch with empty todos', () => {
-      it('results in a file with 2 todos', () => {
-        const conflict = readFileSync(
-          '__tests__/__fixtures__/lockfiles/.lint-todo.additions-removals.conflict.lock',
-          'utf-8'
-        );
-        const expected = readFileSync(
-          '__tests__/__fixtures__/lockfiles/.lint-todo.additions-removals.resolved.lock',
-          'utf-8'
-        );
+  describe('given a branch that has 2 existing todos', () => {
+    describe('with changes on the upstream branch', () => {
+      describe('when merging an upstream branch with empty todos', () => {
+        it.todo('results in empty todos');
+      });
 
-        const resolved = resolveConflict(conflict);
-        expect(resolved).toEqual(expected);
+      describe('merging an upstream branch with the same todos', () => {
+        it.todo('results in a noop and results in the same 2 todos');
+      });
+
+      describe('merging an upstream branch with 1 new todo', () => {
+        it.todo('adds the new todo and results in 3 todos');
+      });
+
+      describe('merging an upstream branch that fixes an existing todo', () => {
+        it.todo('removes the fixed todo and results in 1 single remaining todo');
+      });
+
+      describe('merging an upstream branch that changes an existing todo', () => {
+        it.todo('updates the changed todo with the upstream changes and results in 2 todos');
       });
     });
-  });
 
-  describe('given a branch that 1 todo', () => {
-    describe('merging a branch that updates that same todo', () => {
-      it('resolved the conflict with the current changes (HEAD)', () => {
-        const conflict = readFileSync(
-          '__tests__/__fixtures__/lockfiles/.lint-todo.multiple-additions.conflict.lock',
-          'utf-8'
-        );
-        const expected = readFileSync(
-          '__tests__/__fixtures__/lockfiles/.lint-todo.multiple-additions.resolved.lock',
-          'utf-8'
-        );
+    describe('with changes on both branches', () => {
+      describe('updating the same todo on each branch', () => {
+        it.todo('merges remote and local changes');
+      });
 
-        const resolved = resolveConflict(conflict);
+      describe('adding different new todos to each branch', () => {
+        it.todo('adds 2 new todos to the existing todos');
+      });
 
-        expect(resolved).toEqual(expected);
+      describe('removing different new todos to each branch', () => {
+        it.todo('adds 2 new todos to the existing todos');
       });
     });
   });
